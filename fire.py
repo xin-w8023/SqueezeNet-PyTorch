@@ -5,11 +5,10 @@ class Expand(torch.nn.Module):
     def __init__(self, in_channels, e1_out_channles, e3_out_channles):
         super(Expand, self).__init__()
         self.conv_1x1 = torch.nn.Conv2d(in_channels, e1_out_channles, (1, 1))
-        self.conv_3x3 = torch.nn.Conv2d(in_channels, e3_out_channles, (3, 3))
+        self.conv_3x3 = torch.nn.Conv2d(in_channels, e3_out_channles, (3, 3), padding=1)
 
     def forward(self, x):
         o1 = self.conv_1x1(x)
-        x3 = torch.nn.functional.pad(x, (1, 1, 1, 1))
         o3 = self.conv_3x3(x3)
         return torch.cat((o1, o3), dim=1)
 
