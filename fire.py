@@ -9,7 +9,7 @@ class Expand(torch.nn.Module):
 
     def forward(self, x):
         o1 = self.conv_1x1(x)
-        o3 = self.conv_3x3(x3)
+        o3 = self.conv_3x3(x)
         return torch.cat((o1, o3), dim=1)
 
 
